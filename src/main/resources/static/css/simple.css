@@ -1,0 +1,33 @@
+body{
+    background: linear-gradient(to top, #f3904f 0%, #3b4371 100%);
+    font-family: Montserrat, sans-serif;
+    padding-bottom: 150px;
+    color: #FBFCFC;
+    letter-spacing: 0.3px;
+}
+
+.navbar {
+    display: inline-block;
+}
+
+.container{
+    padding-top: 30px;
+}
+
+h3 {
+    font-size: 35px;
+    font-weight: 450;
+
+}
+
+th {
+    font-size: 19px;
+    font-weight: 400;
+
+}
+
+td {
+    font-size: 17px;
+    font-weight: 350;
+}
+

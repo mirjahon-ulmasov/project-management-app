@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Title Page-->
+    <title>Register Form</title>
+
+    <!-- Icons font CSS-->
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
+
+    <!-- Font special for pages-->
+    <link th:href="@{https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i}"
+          rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/datepicker/daterangepicker.css}" rel="stylesheet" media="all">
+
+    <!-- Navigation CSS-->
+    <link rel="stylesheet" th:href="@{/css/navigation-bar.css}">
+
+    <!-- Register CSS-->
+    <link th:href="@{/css/register-form.css}" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body  form-color form-border">
+                <h2 class="title">Registration Form</h2>
+                <form method="POST" autocomplete="off" th:action="@{/register/save}" th:object="${userAccount}">
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">First Name</label>
+                                <input class="input--style-4" type="text" name="first_name"
+                                       th:field="${userAccount.firstName}">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Last Name</label>
+                                <input class="input--style-4" type="text" name="last_name"
+                                       th:field="${userAccount.lastName}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Birthday</label>
+                                <div class="input-group-icon">
+                                    <input class="input--style-4 js-datepicker" type="text" name="birthday"
+                                           th:field="${userAccount.birthday}">
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Gender</label>
+                                <div class="p-t-10">
+                                    <label class="radio-container m-r-45">Male
+                                        <input type="radio" checked="checked" name="gender" th:value="male"
+                                               th:field="${userAccount.gender}">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="radio-container">Female
+                                        <input type="radio" name="gender" th:value="female"
+                                               th:field="${userAccount.gender}">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Email</label>
+                                <input class="input--style-4" type="email" name="email" th:field="${userAccount.email}">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Phone Number</label>
+                                <input class="input--style-4" type="text" name="phone"
+                                       th:field="${userAccount.phoneNumber}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Password</label>
+                                <input class="input--style-4" type="text" name="password" id="password"
+                                       th:field="${userAccount.password}">
+                                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">User Roles</label>
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select id="role" name="role">
+                                        <option th:selected="selected" th:disabled="disabled">Choose option</option>
+                                        <option th:value="GUEST">GUEST</option>
+                                        <option th:value="USER">USER</option>
+                                        <option th:value="ADMIN">ADMIN</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term"
+                               required="required"/>
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
+                            statements in <a href="#" class="term-service">Terms of service</a>
+                        </label>
+                    </div>
+
+                    <div class="p-t-15">
+                        <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                    </div>
+                </form>
+                <p class="loginhere">
+                    Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jquery JS-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<!-- Vendor JS-->
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script th:src="@{/vendor/datepicker/moment.min.js}"></script>
+<script th:src="@{/vendor/datepicker/daterangepicker.js}"></script>
+
+<!-- Main JS-->
+<script th:src="@{/js/global.js}"></script>
+
+</body>
+
+</html>
+<!-- end document-->
